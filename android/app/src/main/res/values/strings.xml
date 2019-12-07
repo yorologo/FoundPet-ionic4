@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FoundPet</string>
+    <string name="title_activity_main">FoundPet</string>
+    <string name="package_name">com.FoundPet.app</string>
+    <string name="custom_url_scheme">com.FoundPet.app</string>
+</resources>

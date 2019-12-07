@@ -1,0 +1,48 @@
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <h1>Login</h1>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+    <ion-item>
+      <ion-label position="floating">E-Mail</ion-label>
+      <ion-input required formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <div class="validationError">
+      <ng-container *ngFor="let item of validationMessages.email">
+        <div
+          *ngIf="loginForm.get('email').hasError(item.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+          {{ item.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input required formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <div class="validationError">
+      <ng-container *ngFor="let item of validationMessages.password">
+        <div
+          *ngIf="loginForm.get('password').hasError(item.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+          {{ item.message }}
+        </div>
+      </ng-container>
+    </div>
+    <br>
+    <div class="ion-text-center" class="error">
+      {{ errorMessage }}
+    </div>
+    <br>
+    <ion-button class="ion-text-center" expand="block" color="primary" shape="round" type="submit"
+      [disabled]="loginForm.invalid">
+      Login
+    </ion-button>
+  </form>
+  <br>
+  <ion-button (click)="goToRegister()" class="ion-text-center" expand="block" color="primary" shape="round">
+    Registrar
+  </ion-button>
+  <br>
+  <div class="ion-text-center">
+    ¿Olvidaste tu contraseña?
+  </div>
+</ion-content>

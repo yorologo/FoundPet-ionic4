@@ -1,0 +1,38 @@
+<ion-split-pane padding>
+  <ion-menu menuId="contentSearch" side="end" type="overlay">
+    <ion-header>
+      <ion-toolbar>
+        <ion-searchbar placeholder="Busqueda"></ion-searchbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeMenu()">
+            <ion-icon slot="icon-only" name="close" size="large"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content padding>
+      <ion-item>
+        <ion-label>Municipio</ion-label>
+        <ion-select multiple="false" placeholder="Todos">
+          <ion-select-option *ngFor="let item of municipios" value="{{ item.nombre }}">{{ item.nombre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Animal</ion-label>
+        <ion-select multiple="false" placeholder="Todos">
+          <ion-select-option *ngFor="let item of animales" value="{{ item.tipo }}">{{ item.tipo }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo Reporte</ion-label>
+        <ion-select multiple="false" placeholder="Todos">
+          <ion-select-option *ngFor="let item of reportes" value="{{ item.tipo }}">{{ item.tipo }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="contentSearch" main></ion-router-outlet>
+</ion-split-pane>

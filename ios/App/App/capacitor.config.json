@@ -1,0 +1,8 @@
+{
+  "appId": "com.FoundPet.app",
+  "appName": "FoundPet",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

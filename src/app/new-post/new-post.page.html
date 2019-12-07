@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Nuevo Post</ion-title>
+    <ion-buttons slot="end" (click)="goToHome()">
+      <ion-icon name="close" size="large"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding">
+  <form [formGroup]="newPostForm" (ngSubmit)="newPost(newPostForm.value)">
+
+    <ion-item>
+      <ion-label position="floating">Titulo <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="4" *ngIf="!photo">
+            <ion-row>
+              <ion-col>
+                <ion-button size="large" (click)="takePhoto()">
+                  <ion-icon size="large" name="camera"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button size="large" (click)="selectPicture()">
+                  <ion-icon size="large" name="image"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="4" justify-content-center align-items-center *ngIf="photo">
+            <ion-img [src]="photo"></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label position="floating">Animal <ion-text color="danger">*</ion-text>
+                  </ion-label>
+                  <ion-select formControlName="animal" multiple="false" placeholder="Selecciona..." required>
+                    <ion-select-option *ngFor="let item of animales" value="{{ item.tipo }}">{{ item.tipo }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label position="floating">Tipo Reporte <ion-text color="danger">*</ion-text>
+                  </ion-label>
+                  <ion-select formControlName="type" multiple="false" placeholder="Selecciona..." required>
+                    <ion-select-option *ngFor="let item of reportes" value="{{ item.tipo }}">{{ item.tipo }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-textarea required type="text" formControlName="description"></ion-textarea>
+    </ion-item>
+    <agm-map *ngIf="currenntCenter" [latitude]="currenntCenter.latitude" [longitude]="currenntCenter.longitude"
+      [zoom]="defaultZoom" (mapClick)="onChoseLocation($event)">
+      <agm-marker [latitude]="currenntCenter.latitude" [longitude]="currenntCenter.longitude"></agm-marker>
+    </agm-map>
+    <ion-button class="ion-padding" expand="block" size="small" color="success" (click)="getCurrentPosition()">
+      <ion-label *ngIf="!currenntCenter">Añadir Ubicacion <ion-icon name="locate"></ion-icon>
+      </ion-label>
+      <ion-label *ngIf="currenntCenter">Ubicacion Actual <ion-icon name="locate"></ion-icon>
+      </ion-label>
+    </ion-button>
+    <br>
+    <ion-button expand="block" color="primary" type="submit" [disabled]="newPostForm.invalid">
+      POST
+    </ion-button>
+  </form>
+</ion-content>

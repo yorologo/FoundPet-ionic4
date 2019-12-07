@@ -1,0 +1,7 @@
+{
+  "name": "FoundPet",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

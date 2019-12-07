@@ -1,0 +1,60 @@
+<ion-content class="ion-padding principalBG">
+  <div class="ion-text-center">
+    <h1>Registro</h1>
+  </div>
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)">
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input required formControlName="username" type="text"></ion-input>
+    </ion-item>
+    <div class="validationError">
+      <ng-container *ngFor="let item of validationMessages.username">
+        <div
+          *ngIf="registerForm.get('username').hasError(item.type) && (registerForm.get('username').dirty || registerForm.get('username').touched)">
+          {{ item.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="floating">E-Mail</ion-label>
+      <ion-input required formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <div class="validationError">
+      <ng-container *ngFor="let item of validationMessages.email">
+        <div
+          *ngIf="registerForm.get('email').hasError(item.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+          {{ item.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input required formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <div class="validationError">
+      <ng-container *ngFor="let item of validationMessages.password">
+        <div
+          *ngIf="registerForm.get('password').hasError(item.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+          {{ item.message }}
+        </div>
+      </ng-container>
+    </div>
+    <br>
+    <div class="ion-text-center" class="error">
+      {{ errorMessage }}
+    </div>
+    <br>
+    <ion-button class="ion-text-center" expand="block" color="primary" shape="round" type="submit"
+      [disabled]="registerForm.invalid">
+      Registrar
+    </ion-button>
+  </form>
+  <br>
+  <ion-button (click)="goToLogin()" class="ion-text-center" expand="block" color="primary" shape="round">
+    Login
+  </ion-button>
+  <br>
+  <div class="ion-text-center">
+    ¿Olvidaste tu contraseña?
+  </div>
+</ion-content>
